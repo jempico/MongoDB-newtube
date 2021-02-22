@@ -73,7 +73,9 @@ db.video.insertOne({
 
     "creation details" : {
         "date of creation": new Date("2016-05-18T16:00:00Z"),
-        "creator_id": ObjectId("107f191e810c19729de860ea")
+        "creator_id": ObjectId("107f191e810c19729de860ea"),
+        "channel_id" : ObjectId("907f191e810c19729de861ea"),
+        "playlist_id" : [ObjectId("207f191e810c19729de860ea")]
     },
 
     "interactions" : {
@@ -94,6 +96,10 @@ db.video.insertOne({
     }
     
 })
+
+db.video.createIndex( { "interactions.comments._id": 1 }, { unique: true } )
+db.video.createIndex( { "interactions.comments.replies._id": 1 }, { unique: true } )
+
 
 db.channel.insertOne({
     "_id" : ObjectId("907f191e810c19729de861ea"),
